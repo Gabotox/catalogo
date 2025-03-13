@@ -1,0 +1,149 @@
+
+
+
+
+#botones .swiper-slide {
+    text-align: center;
+    width: max-content !important;
+    height: max-content !important;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Slider de botones de categorías */
+#swiper-botones a {
+    display: block;
+    width: max-content;
+    height: max-content;
+    background: none;
+    padding: .6rem 1rem;
+    font-size: .8rem !important;
+    border: none;
+    border-radius: 8px;
+    background: #e7e7e7;
+    color: #000;
+}
+
+#swiper-botones a.selected {
+    background: red;
+    color: white;
+}
+
+
+/* Slider de tarjetas de productos TODOS */
+
+/* Contenedor del slider */
+#swiper-productos {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+#swiper-productos .swiper-slide {
+    width: 100%;
+    height: 100% !important;
+    padding: 2rem 1.5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.card {
+    position: relative;
+    border: none;
+    height: 100%;
+}
+
+
+.card-body {
+    padding: 0 !important;
+}
+.card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+
+.card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    line-height: 1.5;
+    max-height: 4.5em;
+}
+
+/* Precio */
+.price {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Botón agregar al carrito */
+.btn-add-to-cart {
+    background: red;
+    color: #fff;
+    padding: 0.4rem .8rem;
+    font-size: 0.9rem !important;
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
+
+.btn-add-to-cart:hover {
+    background: red;
+    color: #fff;
+}
+
+.ojo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: red;
+    color: white;
+    padding: 0.2rem;
+    border-radius: .4rem;
+    text-decoration: none;
+    padding: .4rem .6rem;
+}
+
+/* Imagen */
+.card-img-left {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+#loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Loader animado */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #25b09b;
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animación de giro */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

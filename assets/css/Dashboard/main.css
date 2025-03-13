@@ -1,0 +1,137 @@
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+
+}
+
+#loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Loader animado */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #25b09b;
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animación de giro */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #343a40;
+    color: white;
+    transition: all 0.3s;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 15px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.sidebar a:hover {
+    background: #495057;
+}
+
+/* Contenido principal */
+.content {
+    flex-grow: 1;
+    margin-left: 250px;
+    transition: all 0.3s;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.navbar .btn-toggle {
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Ocultar Sidebar */
+.sidebar.hidden {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.content.full-width {
+    margin-left: 0;
+}
+
+
+.cont-pro {
+    max-height: 55vh; /* Ajusta la altura según lo necesites */
+    overflow-y: auto; /* Permite el scroll vertical */
+    overflow-x: auto; /* Permite el scroll horizontal si es necesario */
+}
+
+
+.sticky-header th {
+    position: sticky;
+    top: 0;
+    background: #343a40;
+    /* Asegura que el fondo de la cabecera se mantenga */
+    color: white;
+    z-index: 100;
+}
+
+.table tbody tr td:nth-child(3) { /* Tercera columna (Descripción) */
+    max-width: 200px; /* Ajusta según lo necesites */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Añade los "..." si el texto es muy largo */
+    white-space: nowrap; /* Evita que el texto se desborde en varias líneas */
+}
+
+
+
+
+
+@media screen and (max-width: 768px){
+    .cont-pro {
+        max-height: 68vh;
+    }
+}
+
