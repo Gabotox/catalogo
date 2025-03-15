@@ -22,25 +22,16 @@ class DashboardModel extends Query
         $sql = "SELECT p.*, c.* 
             FROM productos p 
             INNER JOIN categorias c ON p.categoria_id = c.id_categoria 
-            ORDER BY p.id_producto
-            LIMIT $inicio, $productosPorPagina"; // Agregamos el LIMIT
+            ORDER BY p.id_producto DESC
+            LIMIT $inicio, $productosPorPagina";
 
         $productos = $this->selectAll($sql);
 
-        // Verifica si la consulta no falló
         if (!$productos) {
-            return []; // Retorna un array vacío si no hay productos o hay un error
+            return [];
         }
 
-        // Formatear precios a COP
-        foreach ($productos as &$producto) {
-            if (isset($producto['precio_producto'])) {
-                $producto['precio_producto'] = number_format((float)$producto['precio_producto'], 0, ',', '.');
-            }
-        }
-        unset($producto); // Rompe la referencia para evitar problemas
-
-        return $productos;
+        return $productos; // Devolvemos los productos sin formatear el precio
     }
 
     public function contarCategorias()
@@ -52,19 +43,50 @@ class DashboardModel extends Query
         return is_array($resultado) && isset($resultado['total']) ? $resultado : ['total' => 0];
     }
 
+    public function getTodasLasCategorias()
+    {
+        $sql = "SELECT DISTINCT id_categoria, nombre_categoria FROM categorias ORDER BY nombre_categoria";
+        return $this->selectAll($sql);
+    }
 
     public function getCategorias($inicio, $categoriasPorPagina)
     {
-        $sql = "SELECT * FROM categorias LIMIT $inicio, $categoriasPorPagina";
+        $sql = "SELECT * FROM categorias ORDER BY id_categoria DESC LIMIT $inicio, $categoriasPorPagina";
         return $this->selectAll($sql);
     }
 
 
+
+
+
+
+
+
+    // APARTADO DE CRUD
+    public function agregarProducto($data){
+        $sql = "INSERT INTO productos (nombre_producto, precio_producto, descripcion_producto, cantidad_producto, imagen_producto, categoria_id) VALUES (?, ?, ?, ?, ?, ?)";
+        $resultado = $this->insertar($sql, [
+            $data["nombre"],
+            $data["precio"],
+            $data["descripcion"],
+            $data["disponible"],
+            $data["imagen"],
+            $data["categoria"]
+        ]);
+
+        return $resultado > 0; // Retorna true si la inserción fue exitosa
+
+    }
+
     public function editarProducto($data)
     {
+        $sql = "UPDATE productos SET nombre_producto = ?, precio_producto = ?, descripcion_producto = ?, cantidad_producto = ?, categoria_id = ? WHERE id_producto = ?";
 
-        // Pasamos los datos en el orden correcto
-        $resultado = $this->insertar($sql, [
+
+        error_log("Datos recibidos en editarProducto: " . print_r($data, true));
+
+
+        $resultado = $this->editar($sql, [
             $data["nombre"],
             $data["precio"],
             $data["descripcion"],
@@ -72,8 +94,33 @@ class DashboardModel extends Query
             $data["categoria"],
             $data["id"]
         ]);
+        // Verificar si hubo filas afectadas
+        if ($resultado === 0) {
+            error_log("Consulta ejecutada pero sin filas afectadas. Posibles causas: el ID no existe o los valores no cambiaron.");
+        }
 
-        // Como `insertar()` devuelve lastInsertId() o 0, validamos si la actualización fue exitosa
-        return $resultado !== 0; // Retorna `true` si hubo éxito, `false` en caso de error
+        return $resultado > 0;
+
+
+        return $resultado > 0; // Retorna true si hubo filas afectadas
+    }
+
+    public function eliminarProducto($id)
+    {
+        $sql = "DELETE FROM productos WHERE id_producto = ?";
+        $resultado = $this->eliminar($sql, [$id]);
+
+        return $resultado > 0; // Retorna true si la eliminación fue exitosa
+    }
+
+
+    public function agregarCategoria($data){
+        $sql = "INSERT INTO categorias (nombre_categoria) VALUES (?)";
+
+        $resultado = $this->insertar( $sql, [
+            $data["nombre"]
+        ]);
+
+        return $resultado > 0 ;
     }
 }

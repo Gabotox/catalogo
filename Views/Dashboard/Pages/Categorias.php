@@ -3,7 +3,7 @@
         <h2 class="">Lista de Categorias</h2>
     </div>
     <div class="col-6 d-flex justify-content-end gap-2">
-        <button class="btn btn-warning btn-sm"><i class="fa-solid fa-layer-group"></i> Agregar Categoría</button>
+        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarCategoria"><i class="fa-solid fa-layer-group"></i> Agregar Categoría</button>
     </div>
 </div>
 

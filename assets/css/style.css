@@ -83,9 +83,14 @@
     font-size: 1.1rem;
 }
 
+#swiper-productos .card-title {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600 !important;
+}
 /* Botón agregar al carrito */
 .btn-add-to-cart {
-    background: red;
+    background: #719c3d !important;
     color: #fff;
     padding: 0.4rem .8rem;
     font-size: 0.9rem !important;
@@ -102,7 +107,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: red;
+    background: #719c3d;
     color: white;
     padding: 0.2rem;
     border-radius: .4rem;

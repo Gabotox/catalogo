@@ -1,4 +1,3 @@
-const base_url = "http://localhost/ecommerce/";
 const cerrarSesion = document.querySelector("#cerrarSesion");
 
 cerrarSesion.addEventListener("click", function(e) {

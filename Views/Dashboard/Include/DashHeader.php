@@ -31,3 +31,32 @@ include_once __DIR__ . "/../../../Config/config.php";
     <div id="loader-container">
         <div class="loader"></div>
     </div>
+
+
+
+    <!-- MODAL DE AGREGAR CATEGORIA -->
+    <div class="modal fade" id="modalAgregarCategoria" tabindex="-1" aria-labelledby="modalAgregarCategoriaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalAgregarCategoriaLabel">Agregar categoria</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-agregar-categoria">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label for="agregar-producto-nombre" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="agregar-categoria-nombre">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" id="agregarCategoria">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>

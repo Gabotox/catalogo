@@ -61,4 +61,29 @@ class Query extends Conexion
             return 0; // Devuelve 0 en caso de error
         }
     }
+
+    public function editar(string $sql, array $datos)
+    {
+        try {
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute($datos);
+            return $stmt->rowCount(); // Devuelve el número de filas afectadas
+        } catch (PDOException $e) {
+            error_log("Error en ejecutar: " . $e->getMessage());
+            return 0; // Devuelve 0 si hay error
+        }
+    }
+
+    
+    public function eliminar(string $sql, array $datos)
+    {
+        try {
+            $stmt = $this->con->prepare($sql);
+            $stmt->execute($datos);
+            return $stmt->rowCount(); // Devuelve el número de filas afectadas
+        } catch (PDOException $e) {
+            error_log("Error en eliminar: " . $e->getMessage());
+            return 0; // Devuelve 0 si hay error
+        }
+    }
 }
