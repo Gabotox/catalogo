@@ -28,6 +28,14 @@ class DashboardModel extends Query
         return $productos; // Devolvemos los productos sin formatear el precio
     }
 
+    public function productosStockBajo()
+    {
+        $sql = "SELECT COUNT(*) as total FROM productos WHERE cantidad_producto <= 10";
+        $resultado = $this->select($sql);
+
+        return $resultado ? $resultado['total'] : 0;
+    }
+
     public function getProductos($inicio, $productosPorPagina)
     {
         $sql = "SELECT p.*, c.* 

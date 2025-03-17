@@ -1,4 +1,10 @@
 <div class="container mt-4">
+
+    <?php if ($data['productosStockBajo'] > 0) { ?>
+        <div class="alert alert-danger d-flex align-items-center mt-3">
+            <div>⚠ Hay <?php echo $data['productosStockBajo']; ?> productos con stock bajo.</div>
+        </div>
+    <?php } ?>
     <div class="row">
         <!-- Tarjeta de Total de Productos -->
         <div class="col-md-6">
@@ -29,7 +35,7 @@
 </div>
 
 
-<div class="mt-4">
+<!-- <div class="mt-4">
     <h4 class="mb-5">Últimos Productos Agregados</h4>
     <div class="row">
         <?php foreach ($data['ultimosProductos'] as $producto) { ?>
@@ -41,11 +47,14 @@
                         <h6 class="card-title text-truncate" title="<?php echo $producto['nombre_producto']; ?>">
                             <?php echo $producto['nombre_producto']; ?>
                         </h6>
-                        <p class="text-success fw-bold mb-1">$<?php echo number_format($producto['precio_producto'], 2, ',', '.'); ?></p>
-                        <a href="<?php echo BASE_URL?>Dashboard/productos" class="btn btn-sm btn-outline-primary">Ver</a>
+                        <p class="text-success fw-bold mb-1">
+                            $<?php echo number_format($producto['precio_producto'], 0, ',', '.'); ?>
+                        </p>
+
+                        <a href="<?php echo BASE_URL ?>Dashboard/productos" class="btn btn-sm btn-outline-primary">Ver</a>
                     </div>
                 </div>
             </div>
         <?php } ?>
     </div>
-</div>
+</div> -->

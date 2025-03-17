@@ -14,6 +14,7 @@ class Dashboard extends Controller
         $data['totalProductos'] = $this->model->contarProductos()['total'];
         $data['totalCategorias'] = $this->model->contarCategorias()['total'];
         $data['ultimosProductos'] = $this->model->ultimosProductos();
+        $data['productosStockBajo'] = $this->model->productosStockBajo();
         $data['todasCategorias']  = $this->model->getTodasLasCategorias();
         $this->views->getView('Dashboard', "index", $data);
     }
