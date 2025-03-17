@@ -1,19 +1,24 @@
 <?php
-
+// Iniciar sesión solo si no está iniciada
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include_once __DIR__ . "/Include/DashHeader.php";
-
-error_log("Usuario en sesión: " . ($_SESSION['usuario_nombre'] ?? "No hay sesión"));
-
+// Verificar si el usuario está autenticado antes de incluir cualquier archivo
 if (!isset($_SESSION['usuario_nombre'])) {
-    header("Location: " . BASE_URL . "Admin/login");
-    exit();
+
+    // Limpiar cualquier salida previa antes de redirigir
+    if (ob_get_length()) {
+        ob_clean();
+    }
+
+    header("Location: " . BASE_URL);
+    exit(); // Asegurar que se detiene la ejecución
 }
 
+
 // Sidebar
+include_once __DIR__ . "/Include/DashHeader.php";
 include_once __DIR__ . "/Include/DashSidebar.php";
 ?>
 
@@ -33,7 +38,7 @@ include_once __DIR__ . "/Include/DashSidebar.php";
         ?>
     </div>
 
-    
-    <?php
-    include_once __DIR__ . "/Include/DashFooter.php";
-    ?>
+</div>
+<?php
+include_once __DIR__ . "/Include/DashFooter.php";
+?>

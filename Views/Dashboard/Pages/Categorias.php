@@ -13,7 +13,7 @@
     <form class="col-md-6 position-relative col-6" role="search">
         <!-- Asegurar que este contenedor tenga el mismo ancho -->
         <div class="cont d-flex align-items-center w-100">
-            <input id="searchInputCategorias" class="form-control flex-grow-1" type="search" placeholder="Search" aria-label="Search">
+            <input id="searchInputCategorias" class="form-control flex-grow-1" type="search" placeholder="Search" aria-label="Search" autocomplete="off">
             <div class="ic">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>

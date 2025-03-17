@@ -12,7 +12,7 @@
     <form class="col-md-6 position-relative col-6" role="search">
         <!-- Asegurar que este contenedor tenga el mismo ancho -->
         <div class="cont d-flex align-items-center w-100">
-            <input id="searchInput" class="form-control flex-grow-1" type="search" placeholder="Search" aria-label="Search">
+            <input id="searchInput" class="form-control flex-grow-1" type="search" placeholder="Search" aria-label="Search" autocomplete="off">
             <div class="ic">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
@@ -31,7 +31,7 @@
         <table class="table table-striped table-hover align-middle">
             <thead class="table-dark sticky-header border-0">
                 <tr class="border-0">
-                    <th class="border-0"><i class="fa-solid fa-image"></i> Imágen</th>
+                    <th class="border-0"><i class="fa-solid fa-image"></i></th>
                     <th class="border-0"><i class="fa-solid fa-signature"></i> Nombre</th>
                     <th class="border-0"><i class="fa-solid fa-signature"></i> Descripción</th>
                     <th class="border-0"><i class="fa-solid fa-dollar-sign"></i> Precio</th>
@@ -42,7 +42,8 @@
             </thead>
 
             <tbody>
-                <?php foreach ($data['productos'] as $producto) { ?>
+                <?php
+                foreach ($data['productos'] as $producto) { ?>
                     <tr>
                         <td class="align-middle"><img src="<?php echo $producto['imagen_producto']; ?>" alt="" width="50"></td>
                         <td class="align-middle"><?php echo $producto['nombre_producto']; ?></td>
@@ -59,7 +60,12 @@
                             }
                             ?>
                         "><?php echo $producto['cantidad_producto']; ?></span></td>
-                        <td class="align-middle"><?php echo $producto['nombre_categoria']; ?></td>
+                        <td class="align-middle"><?php if ($producto['categoria_id']) {
+                                                        echo $producto['nombre_categoria'];
+                                                    } else {
+                                                        echo "Sin categoría";
+                                                    }
+                                                    ?></td>
                         <td class="align-middle text-nowrap">
                             <button class="btn btn-success btn-sm btn-ver"
                                 data-bs-toggle="modal" data-bs-target="#modalVer"
@@ -95,7 +101,8 @@
 
                     </tr>
 
-                <?php } ?>
+                <?php
+             } ?>
             </tbody>
         </table>
     </div>

@@ -4,9 +4,8 @@
 <div class="container py-5">
     <h2 class="mb-5 mt-3">Productos de la categoría <small class="text-danger"><?php echo $data['categoria'][0]['nombre_categoria']; ?></small></h2>
     <div class="row pt-3 gap-5 d-flex justify-content-center">
-
         <?php foreach ($data['categoria'] as $producto) { ?>
-            <div class="col-md-3">
+            <div class="col-md-3 m-2 my-4">
                 <div class="card">
                     <!-- Imagen del producto -->
                     <a href="<?php echo BASE_URL . 'principal/detail/' . $producto['id_producto']; ?>" class="card-title">

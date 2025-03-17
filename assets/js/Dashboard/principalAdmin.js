@@ -25,7 +25,7 @@ cerrarSesion.addEventListener("click", function(e) {
 
         if (res.status === "success") {
             setTimeout(() => {
-                window.location.href = base_url + "Admin/login/";
+                window.location.href = base_url;
             }, 2000);
         }
     })

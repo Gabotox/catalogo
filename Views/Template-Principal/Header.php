@@ -38,9 +38,7 @@
     <div id="loader-container">
         <div class="loader"></div>
     </div>
-
-
-
+    
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
@@ -48,7 +46,6 @@
             <!-- Logo -->
             <a class="navbar-brand text-success logo h1 align-self-center" href="<?php echo BASE_URL; ?>">
                 <img src="<?php echo BASE_URL ?>assets/img/logo.jfif" alt="" width="50">
-                Chaparro
             </a>
 
             <!-- Botón de toggle para dispositivos móviles -->

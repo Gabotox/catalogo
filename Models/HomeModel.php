@@ -39,4 +39,11 @@ class HomeModel extends Query
 
         return $productos;
     }
+
+
+    public function getBanners()
+    {
+        $sql = "SELECT * FROM banners";
+        return $this->selectAll($sql);
+    }
 }

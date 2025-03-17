@@ -2,10 +2,10 @@
 
     <?php if ($data['productosStockBajo'] > 0) { ?>
         <div class="alert alert-danger d-flex align-items-center mt-3">
-            <div>⚠ Hay <?php echo $data['productosStockBajo']; ?> productos con stock bajo.</div>
+            <div>⚠ Hay <span class="badge bg-danger"><?php echo $data['productosStockBajo']; ?></span> productos con stock bajo.</div>
         </div>
     <?php } ?>
-    <div class="row">
+    <div class="row gap-2 gap-md-0">
         <!-- Tarjeta de Total de Productos -->
         <div class="col-md-6">
             <div class="card text-white bg-primary shadow-lg rounded-4">

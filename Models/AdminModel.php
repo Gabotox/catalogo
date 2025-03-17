@@ -10,7 +10,7 @@ class AdminModel extends Query
 
     public function login($usuario)
     {
-        $sql = "SELECT * FROM usuarios WHERE usuario_usuario = ?";
+        $sql = "SELECT * FROM usuarios WHERE usuario_usuario = ? AND rol_usuario = 1";
         $data = array($usuario);
         return $this->select($sql, $data);
     }

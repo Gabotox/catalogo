@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 const res = await response.json();
-                console.log("Respuesta del servidor:", res);
 
                 Toastify({
                     text: res.message,

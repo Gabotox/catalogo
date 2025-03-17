@@ -13,6 +13,7 @@ class Home extends Controller
         $data['categorias'] = $this->model->getCategorias();
         $data['productos'] = $this->model->getProductos();
         $data['productosConCategoria'] = $this->model->getProductosConCategoria();
+        $data['banners'] = $this->model->getBanners();
         $this->views->getView('home', "index", $data);
     }
 }

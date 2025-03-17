@@ -15,7 +15,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 999999;
 }
 
 /* Loader animado */
@@ -83,7 +83,9 @@ body {
     margin-left: 250px;
     transition: all 0.3s;
     width: 100%;
-    padding: 20px;
+    padding: 0 20px;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 /* Navbar */
@@ -92,7 +94,12 @@ body {
     background: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 600;
 }
+
+
 
 .navbar .btn-toggle {
     border: none;
@@ -113,15 +120,6 @@ body {
 }
 
 
-.cont-pro {
-    max-height: 55vh;
-    /* Ajusta la altura según lo necesites */
-    overflow-y: auto;
-    /* Permite el scroll vertical */
-    overflow-x: auto;
-    /* Permite el scroll horizontal si es necesario */
-}
-
 
 .sticky-header th {
     position: sticky;
@@ -132,9 +130,19 @@ body {
     z-index: 100;
 }
 
+.table tbody tr td:nth-child(2) {
+    /* Tercera columna (Nombre) */
+    max-width: 100px;
+    /* Ajusta según lo necesites */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Añade los "..." si el texto es muy largo */
+    white-space: nowrap;
+    /* Evita que el texto se desborde en varias líneas */
+}
 .table tbody tr td:nth-child(3) {
     /* Tercera columna (Descripción) */
-    max-width: 200px;
+    max-width: 100px;
     /* Ajusta según lo necesites */
     overflow: hidden;
     text-overflow: ellipsis;
@@ -175,7 +183,6 @@ body {
 
 
 .search-results {
-    background: #25b09b;
     border-top: none;
     max-height: 250px;
     /* Evita que sea muy largo */

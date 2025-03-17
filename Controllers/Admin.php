@@ -43,21 +43,23 @@ class Admin extends Controller
 
 
             if ($usuarioData) {
-                // Verificar contraseña (asumiendo que está hasheada)
+                // Verificar la contraseña
                 if (password_verify($contra, $usuarioData["password_usuario"])) {
-                    // Iniciar sesión
+                    // Iniciar sesión si no está iniciada
                     if (session_status() == PHP_SESSION_NONE) {
                         session_start();
                     }
+                    // Guardar datos en la sesión
                     $_SESSION["usuario_id"] = $usuarioData["id_usuario"];
                     $_SESSION["usuario_nombre"] = $usuarioData["nombre_usuario"];
+                    $_SESSION["usuario_rol"] = $usuarioData["rol_usuario"]; // Para validar el rol en otras partes
 
                     echo json_encode(["status" => "success", "message" => "Inicio de sesión exitoso"]);
                 } else {
                     echo json_encode(["status" => "error", "message" => "Contraseña incorrecta"]);
                 }
             } else {
-                echo json_encode(["status" => "error", "message" => "El usuario no existe"]);
+                echo json_encode(["status" => "error", "message" => "El usuario no existe o no es ADMIN"]);
             }
         } else {
             echo json_encode([

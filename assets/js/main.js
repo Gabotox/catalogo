@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
         slidesPerView: "auto",
         spaceBetween: 10,
         freeMode: true,
-        loop: slides > 3, // Activa loop solo si hay más de 3 slides
         autoplay: {
             delay: 3000,
             disableOnInteraction: false,
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
         slidesPerView: 4,
         spaceBetween: 30,
         freeMode: true,
-        loop: document.querySelectorAll("#swiper-productos .swiper-slide").length > 3, // Evita errores si hay menos de 4 slides
         autoplay: {
             delay: 2000,
             disableOnInteraction: false,
