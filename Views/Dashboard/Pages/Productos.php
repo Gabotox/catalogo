@@ -5,14 +5,25 @@
     <div class="col-6 d-flex justify-content-end gap-2">
         <button class="btn btn-success btn-sm btn-agregar"
             data-bs-toggle="modal" data-bs-target="#modalAgregar"><i class="fa-solid fa-plus"></i> Agregar Producto</button>
-        <button class="btn btn-warning btn-sm"  data-bs-toggle="modal" data-bs-target="#modalAgregarCategoria"><i class="fa-solid fa-layer-group"></i> Agregar Categoría</button>
+        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarCategoria"><i class="fa-solid fa-layer-group"></i> Agregar Categoría</button>
     </div>
 </div>
 <div class="row py-3">
-    <form class="d-flex col-md-6" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+    <form class="col-md-6 position-relative col-6" role="search">
+        <!-- Asegurar que este contenedor tenga el mismo ancho -->
+        <div class="cont d-flex align-items-center w-100">
+            <input id="searchInput" class="form-control flex-grow-1" type="search" placeholder="Search" aria-label="Search">
+            <div class="ic">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
+        <!-- Contenedor de resultados con el mismo ancho -->
+        <div id="resultados" class="search-results w-100"></div>
+
     </form>
+
+
 </div>
 
 <div class="table-responsive"> <!-- Hace que la tabla sea desplazable en móviles -->
@@ -70,7 +81,8 @@
                                 data-precio="<?php echo $producto['precio_producto']; ?>"
                                 data-descripcion="<?php echo $producto['descripcion_producto']; ?>"
                                 data-disponible="<?php echo $producto['cantidad_producto']; ?>"
-                                data-categoria="<?php echo $producto['id_categoria']; ?>">
+                                data-categoria="<?php echo $producto['id_categoria']; ?>"
+                                data-nombreCategoria="<?php echo $producto['nombre_categoria']; ?>">
                                 <i class="fa-solid fa-pen-to-square"></i> Editar
                             </button>
 
@@ -176,12 +188,13 @@
                             <label for="editar-producto-categoria" class="col-form-label">Categoría:</label>
                             <select class="form-select" id="editar-producto-categoria">
                                 <option value="">-- Selecciona --</option>
-                                <?php foreach ($data['categorias'] as $categoria) { ?>
+                                <?php foreach ($data['todasCategorias'] as $categoria) { ?>
                                     <option value="<?php echo $categoria['id_categoria']; ?>">
-                                        <?php echo $categoria['nombre_categoria']; ?>
+                                        <?php echo $categoria["nombre_categoria"]; ?>
                                     </option>
                                 <?php } ?>
                             </select>
+
                         </div>
                     </div>
                 </form>
@@ -228,62 +241,3 @@
         </div>
     </div>
 </div>
-
-<!-- MODAL DE AGREGAR -->
-<div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalAgregarLabel">Agregar producto</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="form-agregar-producto">
-                    <input type="hidden" id="agregar-producto-id">
-                    <div class="row mb-3">
-                        <div class="col-6">
-                            <label for="agregar-producto-nombre" class="col-form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="agregar-producto-nombre">
-                        </div>
-                        <div class="col-6">
-                            <label for="agregar-producto-precio" class="col-form-label">Precio:</label>
-                            <input type="number" class="form-control" id="agregar-producto-precio">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-6">
-                            <label for="agregar-producto-descripcion" class="col-form-label">Descripción:</label>
-                            <textarea class="form-control" id="agregar-producto-descripcion"></textarea>
-                        </div>
-                        <div class="col-6">
-                            <label for="agregar-producto-imagen" class="col-form-label">Imagen:</label>
-                            <input type="text" class="form-control" id="agregar-producto-imagen">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-6">
-                            <label for="agregar-producto-disponible" class="col-form-label">Disponible:</label>
-                            <input type="number" class="form-control" id="agregar-producto-disponible">
-                        </div>
-                        <div class="col-6">
-                            <label for="agregar-producto-categoria" class="col-form-label">Categoría:</label>
-                            <select class="form-select" id="agregar-producto-categoria">
-                                <option value="">-- Selecciona --</option>
-                                <?php foreach ($data['categorias'] as $categoria) { ?>
-                                    <option value="<?php echo $categoria['id_categoria']; ?>">
-                                        <?php echo $categoria['nombre_categoria']; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary" id="agregar">Guardar cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
-

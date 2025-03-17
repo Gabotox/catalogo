@@ -3,15 +3,28 @@
         <h2 class="">Lista de Categorias</h2>
     </div>
     <div class="col-6 d-flex justify-content-end gap-2">
+        <button class="btn btn-success btn-sm btn-agregar"
+            data-bs-toggle="modal" data-bs-target="#modalAgregar"><i class="fa-solid fa-plus"></i> Agregar Producto</button>
         <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalAgregarCategoria"><i class="fa-solid fa-layer-group"></i> Agregar Categoría</button>
     </div>
 </div>
 
 <div class="row py-3">
-    <form class="d-flex col-md-6" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+    <form class="col-md-6 position-relative col-6" role="search">
+        <!-- Asegurar que este contenedor tenga el mismo ancho -->
+        <div class="cont d-flex align-items-center w-100">
+            <input id="searchInputCategorias" class="form-control flex-grow-1" type="search" placeholder="Search" aria-label="Search">
+            <div class="ic">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+
+        <!-- Contenedor de resultados con el mismo ancho -->
+        <div id="resultadosCategorias" class="search-results w-100"></div>
+
     </form>
+
+
 </div>
 
 
@@ -30,9 +43,12 @@
                     <tr>
                         <td class="align-middle"><?php echo $categoria['nombre_categoria']; ?></td> <!-- Aplica el ancho a la celda -->
                         <td class="align-middle text-nowrap">
-                            <button class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i> Ver</button>
-                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-                            <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                            <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria"
+                                data-id="<?php echo $categoria['id_categoria']; ?>"
+                                data-nombre="<?php echo $categoria['nombre_categoria']; ?>">
+                                <i class="fa-solid fa-pen-to-square"></i> Editar</button>
+
+                            <button class="btn btn-danger btn-sm btn-eliminarCat" data-id="<?php echo $categoria['id_categoria']; ?>"><i class="fa-solid fa-trash"></i> Eliminar</button>
                         </td>
                     </tr>
                 <?php } ?>
@@ -96,3 +112,31 @@ if ($totalPaginas > 1) { // Solo mostrar si hay más de una página
         </ul>
     </nav>
 <?php } ?>
+
+
+
+<!-- MODAL DE EDITAR -->
+<div class="modal fade" id="modalEditarCategoria" tabindex="-1" aria-labelledby="modalEditarCategoriaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalEditarCategoriaLabel">Editar categoria</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form id="form-editar-categoria">
+                    <input type="hidden" id="editar-categoria-id">
+                    <div class="row mb-3">
+                        <label for="editar-categoria-nombre" class="col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="editar-categoria-nombre">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" id="editarCategoria">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,10 @@ class Dashboard extends Controller
     {
         $data['title'] = 'Inicio';
         $data['vista'] = "Views/Dashboard/Pages/Inicio.php";
+        $data['totalProductos'] = $this->model->contarProductos()['total'];
+        $data['totalCategorias'] = $this->model->contarCategorias()['total'];
+        $data['ultimosProductos'] = $this->model->ultimosProductos();
+        $data['todasCategorias']  = $this->model->getTodasLasCategorias();
         $this->views->getView('Dashboard', "index", $data);
     }
 
@@ -37,8 +41,8 @@ class Dashboard extends Controller
         // Obtener productos paginados
         $data['productos'] = $this->model->getProductos($inicio, $productosPorPagina);
 
-        // 🔹 Obtener todas las categorías (nueva línea)
-        $data['categorias'] = $this->model->getTodasLasCategorias();
+        // 🔹 Cargar categorías sin afectar la paginación
+        $data["todasCategorias"] = $this->model->getTodasLasCategorias();
 
         // Pasar la información de paginación a la vista
         $data['totalPaginas'] = $totalPaginas;
@@ -74,6 +78,12 @@ class Dashboard extends Controller
 
         // Obtener productos paginados
         $data['categorias'] = $this->model->getCategorias($inicio, $categoriasPorPagina);
+        // 🔹 Cargar todas las categorías sin afectar la paginación
+
+        $data["todasCategorias"] = $this->model->getTodasLasCategorias();
+
+
+        // 🔹 Obtener todas las categorías (nueva línea)
 
         // Pasar la información de paginación a la vista
         $data['totalPaginas'] = $totalPaginas;
@@ -101,6 +111,8 @@ class Dashboard extends Controller
     // Funciones CRUD
 
 
+
+    //Para Productos
     public function agregar()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -238,6 +250,27 @@ class Dashboard extends Controller
         }
     }
 
+    public function buscarProductos()
+    {
+        $query = isset($_GET['q']) ? trim($_GET['q']) : '';
+
+        if (!empty($query)) {
+            $productos = $this->model->buscarProductos($query);
+
+            if (!$productos) {
+                $productos = []; // Garantizar que sea un array vacío en caso de error
+            }
+
+            echo json_encode($productos);
+        } else {
+            echo json_encode([]);
+        }
+    }
+
+
+
+
+    // PARA CATEGORIAS
     public function agregarCategoria()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -271,4 +304,94 @@ class Dashboard extends Controller
             echo json_encode(["status" => "error", "message" => "Error al agregar la categoria"]);
         }
     }
+
+    public function editarCategoria()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
+            echo json_encode(["status" => "error", "message" => "Método no permitido"]);
+            return;
+        }
+
+        header('Content-Type: application/json');
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (
+            !isset($data["id"]) ||
+            !isset($data["nombre"])
+        ) {
+            echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios"]);
+            return;
+        }
+
+        $idCategoria = trim($data["id"]);
+        $nombre = trim($data["nombre"]);
+
+
+        if (empty($nombre) || empty($idCategoria)) {
+            echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios"]);
+            return;
+        }
+
+
+        $resultadoEditar = $this->model->editarCategoria([
+            "id" => $idCategoria,
+            "nombre" => $nombre,
+        ]);
+
+        if ($resultadoEditar) {
+            echo json_encode(["status" => "success", "message" => "Categoría actualizada correctamente"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Error al actualizar la categoría"]);
+        }
+    }
+
+    public function eliminarCategoria()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode(["status" => "error", "message" => "Método no permitido"]);
+            return;
+        }
+
+        header('Content-Type: application/json');
+
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!isset($data["id_categoria"])) {
+            echo json_encode(["status" => "error", "message" => "ID de la Categoria es obligatorio"]);
+            return;
+        }
+
+        $idCategoria = trim($data["id_categoria"]);
+
+        if (empty($idCategoria)) {
+            echo json_encode(["status" => "error", "message" => "ID de la Categoria es obligatorio"]);
+            return;
+        }
+
+        $resultadoEliminarCategoria = $this->model->eliminarCategoria($idCategoria);
+
+        if ($resultadoEliminarCategoria) {
+            echo json_encode(["status" => "success", "message" => "Categoria eliminada correctamente"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Error al eliminar la categoria"]);
+        }
+    }
+    public function buscarCategorias()
+    {
+        $query = isset($_GET['q']) ? trim($_GET['q']) : '';
+
+        if (!empty($query)) {
+            $productos = $this->model->buscarCategorias($query);
+
+            if (!$productos) {
+                $productos = []; // Garantizar que sea un array vacío en caso de error
+            }
+
+            echo json_encode($productos);
+        } else {
+            echo json_encode([]);
+        }
+    }
+
 }

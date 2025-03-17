@@ -50,7 +50,18 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    padding: 15px;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.arriba {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4rem;
 }
 
 .sidebar a {
@@ -103,9 +114,12 @@ body {
 
 
 .cont-pro {
-    max-height: 55vh; /* Ajusta la altura según lo necesites */
-    overflow-y: auto; /* Permite el scroll vertical */
-    overflow-x: auto; /* Permite el scroll horizontal si es necesario */
+    max-height: 55vh;
+    /* Ajusta la altura según lo necesites */
+    overflow-y: auto;
+    /* Permite el scroll vertical */
+    overflow-x: auto;
+    /* Permite el scroll horizontal si es necesario */
 }
 
 
@@ -118,20 +132,75 @@ body {
     z-index: 100;
 }
 
-.table tbody tr td:nth-child(3) { /* Tercera columna (Descripción) */
-    max-width: 200px; /* Ajusta según lo necesites */
+.table tbody tr td:nth-child(3) {
+    /* Tercera columna (Descripción) */
+    max-width: 200px;
+    /* Ajusta según lo necesites */
     overflow: hidden;
-    text-overflow: ellipsis; /* Añade los "..." si el texto es muy largo */
-    white-space: nowrap; /* Evita que el texto se desborde en varias líneas */
+    text-overflow: ellipsis;
+    /* Añade los "..." si el texto es muy largo */
+    white-space: nowrap;
+    /* Evita que el texto se desborde en varias líneas */
+}
+
+
+.cont {
+    border: 2px solid rgba(122, 122, 122, 0.418);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.ic {
+    background: #25b09b;
+    padding: .5rem 2rem;
 }
 
 
 
+.cont input {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+    padding-left: 2rem;
+    /* Opcional, para hacer el fondo transparente */
+}
+
+.cont input:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
 
 
-@media screen and (max-width: 768px){
+.search-results {
+    background: #25b09b;
+    border-top: none;
+    max-height: 250px;
+    /* Evita que sea muy largo */
+    overflow-y: auto;
+    z-index: 1000;
+    /* Asegura que esté por encima de otros elementos */
+    display: none;
+    /* Oculto por defecto */
+    padding: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.producto-item {
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.producto-item:hover {
+    background-color: #f8f9fa;
+}
+
+
+@media screen and (max-width: 768px) {
     .cont-pro {
         max-height: 68vh;
     }
 }
-

@@ -1,16 +1,11 @@
-<script>
-    const base_url = "<?php echo BASE_URL; ?>";
-</script>
-
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <!-- Bootstrap JS (Popper incluido) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+<script src="<?php echo BASE_URL?>assets/js/config.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="<?php echo BASE_URL ?>assets/js/Dashboard/principalAdmin.js"></script>
 <script src="<?php echo BASE_URL ?>assets/js/Dashboard/Dashboard.js"></script>
+<script src="<?php echo BASE_URL ?>assets/js/Dashboard/DashboardCrud.js"></script>
 
 
 <script>

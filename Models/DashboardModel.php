@@ -16,6 +16,17 @@ class DashboardModel extends Query
         return $resultado ? $resultado : ['total' => 0];
     }
 
+    public function ultimosProductos()
+    {
+        $sql = "SELECT * FROM productos ORDER BY id_producto DESC LIMIT 5";
+        $productos = $this->selectAll($sql);
+
+        if (!$productos) {
+            return [];
+        }
+
+        return $productos; // Devolvemos los productos sin formatear el precio
+    }
 
     public function getProductos($inicio, $productosPorPagina)
     {
@@ -45,7 +56,7 @@ class DashboardModel extends Query
 
     public function getTodasLasCategorias()
     {
-        $sql = "SELECT DISTINCT id_categoria, nombre_categoria FROM categorias ORDER BY nombre_categoria";
+        $sql = "SELECT * FROM categorias ORDER BY nombre_categoria";
         return $this->selectAll($sql);
     }
 
@@ -63,7 +74,8 @@ class DashboardModel extends Query
 
 
     // APARTADO DE CRUD
-    public function agregarProducto($data){
+    public function agregarProducto($data)
+    {
         $sql = "INSERT INTO productos (nombre_producto, precio_producto, descripcion_producto, cantidad_producto, imagen_producto, categoria_id) VALUES (?, ?, ?, ?, ?, ?)";
         $resultado = $this->insertar($sql, [
             $data["nombre"],
@@ -82,10 +94,6 @@ class DashboardModel extends Query
     {
         $sql = "UPDATE productos SET nombre_producto = ?, precio_producto = ?, descripcion_producto = ?, cantidad_producto = ?, categoria_id = ? WHERE id_producto = ?";
 
-
-        error_log("Datos recibidos en editarProducto: " . print_r($data, true));
-
-
         $resultado = $this->editar($sql, [
             $data["nombre"],
             $data["precio"],
@@ -99,9 +107,6 @@ class DashboardModel extends Query
             error_log("Consulta ejecutada pero sin filas afectadas. Posibles causas: el ID no existe o los valores no cambiaron.");
         }
 
-        return $resultado > 0;
-
-
         return $resultado > 0; // Retorna true si hubo filas afectadas
     }
 
@@ -113,14 +118,66 @@ class DashboardModel extends Query
         return $resultado > 0; // Retorna true si la eliminación fue exitosa
     }
 
+    public function buscarProductos($query)
+    {
 
-    public function agregarCategoria($data){
+        $sql = "SELECT p.*, c.* 
+                FROM productos p 
+                INNER JOIN categorias c ON p.categoria_id = c.id_categoria
+                WHERE p.nombre_producto LIKE ?;
+                ";
+        $params = ["%$query%"];
+        $productos = $this->selectAll($sql, $params);
+        return $productos;
+    }
+
+
+
+
+
+
+
+    public function agregarCategoria($data)
+    {
         $sql = "INSERT INTO categorias (nombre_categoria) VALUES (?)";
 
-        $resultado = $this->insertar( $sql, [
+        $resultado = $this->insertar($sql, [
             $data["nombre"]
         ]);
 
-        return $resultado > 0 ;
+        return $resultado > 0;
+    }
+
+    public function editarCategoria($data)
+    {
+        $sql = "UPDATE categorias SET nombre_categoria = ? WHERE id_categoria = ?";
+        $resultado = $this->editar($sql, [
+            $data["nombre"],
+            $data["id"]
+        ]);
+
+        return $resultado > 0;
+    }
+
+    public function buscarCategorias($query)
+    {
+
+        $sql = "SELECT *
+                FROM categorias
+                WHERE nombre_categoria LIKE ?
+                ";
+        $params = ["%$query%"];
+        $categorias = $this->selectAll($sql, $params);
+        return $categorias;
+    }
+
+
+
+    public function eliminarCategoria($id)
+    {
+        $sql = "DELETE FROM categorias WHERE id_categoria = ?";
+        $resultado = $this->eliminar($sql, [$id]);
+
+        return $resultado > 0; // Retorna true si la eliminación fue exitosa
     }
 }

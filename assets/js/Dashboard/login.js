@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const tabs = document.querySelectorAll(".tab-button");
     const formWrapper = document.querySelector(".form-wrapper");
-    const base_url = "http://localhost/ecommerce/";
 
     tabs.forEach(tab => {
         tab.addEventListener("click", function () {
