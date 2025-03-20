@@ -2,17 +2,11 @@
 include_once "Views/Template-Principal/Header.php";
 ?>
 
-
-<!-- Start Banner Hero -->
-<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
-        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
+<!-- INICIO DE BANNER -->
+<div class="swiper mySwiper" id="swiperBanner">
+    <div class="swiper-wrapper">
         <?php foreach ($data['banners'] as $index => $banner) { ?>
-            <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+            <div class="swiper-slide <?php echo $index === 0 ? 'active' : ''; ?>">
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
@@ -30,141 +24,310 @@ include_once "Views/Template-Principal/Header.php";
                     </div>
                 </div>
             </div>
-        <?php }   ?>
+        <?php } ?>
     </div>
-
-    
-    
-    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
-        <i class="fas fa-chevron-left"></i>
-    </a>
-    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
-        <i class="fas fa-chevron-right"></i>
-    </a>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
 </div>
-<!-- End Banner Hero -->
+<!-- FINAL DE BANNER -->
 
 
-<!-- Start Content -->
+<!-- INICIO DE CONTENIDO -->
 <div class="container py-5">
+
+    <!-- CATEGORIAS DISPONIBLES -->
     <div class="row">
         <!-- 1era fila: Título de la sección -->
         <div class="col-lg-12 pb-3 d-flex justify-content-between align-items-center">
-            <h1 class="h2 pb-3 mb-0">Categorías</h1>
-            <!-- Icono de búsqueda -->
-            <a class="nav-icon ms-auto d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                <i class="fa fa-fw fa-search text-dark mr-2"></i>
-            </a>
+            <h2 class="pb-3 mb-0">Categorías</h1>
         </div>
     </div>
-
     <div class="row">
         <!-- 2da fila: Categorías disponibles y select -->
         <div class="col-lg-12 d-flex justify-content-between align-items-center gap-2">
-            <ul class="mb-0 col-lg-8 swiper mySwiper" id="swiper-botones">
-                <!-- Botones de categorías  -->
-                <div class="swiper-wrapper" id="botones">
-                    <?php foreach ($data['categorias'] as $categoria) { ?>
-                        <li class="swiper-slide">
-                            <a class="text-dark text-decoration-none mr-3" href="<?php echo BASE_URL . 'principal/categoria/' . $categoria['id_categoria']; ?>">
-                                <?php
-                                echo $categoria['nombre_categoria'];
-                                ?>
-                            </a>
-                        </li>
-                    <?php } ?>
-                </div>
-            </ul>
-            <div class="d-flex ms-auto col-lg-3 ">
-                <select class="form-control">
-                    <option>Featured</option>
-                    <option>A to Z</option>
-                    <option>Item</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-5 gap-5">
-        <?php
-        // Agrupa los productos por categoría
-        $productos_por_categoria = [];
-        foreach ($data['productosConCategoria'] as $producto) {
-            $categoria = $producto['nombre_categoria'];
-            if (!isset($productos_por_categoria[$categoria])) {
-                $productos_por_categoria[$categoria] = [];
-            }
-            $productos_por_categoria[$categoria][] = $producto;
-        }
-
-        // Tomar solo las primeras 4 categorías
-        $categorias_mostradas = array_slice($productos_por_categoria, 0, 4, true);
-        ?>
-
-        <!-- Itera sobre las categorías y sus productos -->
-        <?php foreach ($categorias_mostradas as $categoria => $productos) { ?>
-            <div class="row mt-5">
-                <div class="col-lg-12">
-                    <!-- Título de la categoría -->
-                    <div class="row d-flex justify-content-between align-items-center pb-4">
-                        <div class="col-lg-9 text-start">
-                            <h2 class="h3"><?php echo $categoria; ?></h2>
-                        </div>
-                        <div class="col-lg-2 text-end ms-auto">
-                            <a href="<?php echo BASE_URL . 'principal/categoria/' . $productos[0]['categoria_id']; ?>" class="btn bg-success text-white">Ver todo</a>
-                        </div>
-                    </div>
-
-                    <!-- Productos de la categoría -->
-                    <div class="swiper mySwiper" id="swiper-productos">
-                        <div class="swiper-wrapper">
-                            <?php
-                            // Mostrar solo los primeros 5 productos de cada categoría
-                            $productos_limitados = array_slice($productos, 0, 5);
-                            foreach ($productos_limitados as $producto) { ?>
-                                <div class="swiper-slide">
-                                    <div class="card">
-                                        <a href="<?php echo BASE_URL . 'principal/detail/' . $producto['id_producto']; ?>" class="card-title">
-                                            <img class="card-img-left" src="<?php echo $producto['imagen_producto']; ?>" alt="Imagen del Producto">
-                                        </a>
-                                        <div class="card-body mt-2">
-                                            <a href="<?php echo BASE_URL . 'principal/detail/' . $producto['id_producto']; ?>" class="card-title">
-                                                <?php echo $producto['nombre_producto']; ?>
-                                            </a>
-                                            <p class="card-text"><?php echo $producto['descripcion_producto']; ?></p>
-                                            <input type="hidden" value="1" class="cantidad">
-                                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                                <a href="#" class="btn btn-add-to-cart d-flex align-items-center gap-2"
-                                                    prod="<?php echo $producto['id_producto']; ?>"
-                                                    data-nombre="<?php echo $producto['nombre_producto']; ?>"
-                                                    data-imagen="<?php echo $producto['imagen_producto']; ?>"
-                                                    data-precio="<?php echo $producto['precio_producto']; ?>">
-                                                    <i class="fa-solid fa-cart-shopping"></i> Agregar
-                                                </a>
-                                                <span class="price">$<?php echo $producto['precio_producto']; ?></span>
-                                            </div>
-                                        </div>
-                                        <a href="<?php echo BASE_URL . 'principal/detail/' . $producto['id_producto']; ?>" class="ojo">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
-                                    </div>
+            <div class="row">
+                <?php foreach ($data['categorias'] as $categoria) { ?>
+                    <div class="col-lg-2 mb-3 d-flex">
+                        <div class="card w-100">
+                            <a href="<?php echo BASE_URL . 'principal/categoria/' . $categoria['id_categoria']; ?>">
+                                <img src="https://www.retailactual.com/media/uploads/noticias/productos-sabor-2018.jpg" class="card-img-top" alt="<?php echo $categoria['nombre_categoria']; ?>" height="150">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title"><?php echo $categoria['nombre_categoria']; ?></h5>
                                 </div>
-                            <?php } ?>
+                            </a>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <!-- FIN DE CATEGORIAS DISPONIBLES -->
+
+
+    <!-- BANNER DE PRODUCTOS 2 -->
+    <div class="row py-5">
+        <h2>
+            Titulo
+        </h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio nam aliquam consequuntur delectus, deserunt aut harum tenetur temporibus quibusdam maiores?</p>
+    </div>
+    <div class="row">
+        <!-- Tarjeta principal grande -->
+        <div class="col-lg-8">
+            <div class="card">
+                <img src="https://www.retailactual.com/media/uploads/noticias/productos-sabor-2018.jpg" class="card-img-top" alt="Brinda con Like">
+                <div class="card-img-overlay d-flex align-items-end">
+                    <a href="URL_COMPRA" class="btn btn-dark btn-lg">COMPRAR AHORA</a>
+                </div>
+            </div>
+        </div>
+        <!-- Tarjetas laterales pequeñas -->
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="card">
+                        <img src="https://www.retailactual.com/media/uploads/noticias/productos-sabor-2018.jpg" class="card-img-top" alt="Próximamente">
+                        <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                            <h5 class="text-white text-center">PRÓXIMAMENTE EN NUESTRA TIENDA</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card">
+                        <img src="https://www.retailactual.com/media/uploads/noticias/productos-sabor-2018.jpg" class="card-img-top" alt="Ver snacks">
+                        <div class="card-img-overlay d-flex align-items-end">
+                            <a href="URL_SNACKS" class="btn btn-dark">VER SNACKS</a>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php } ?>
-
-        <!-- Botón Ver Todas las Categorías -->
-        <div class="mt-3">
-            <a href="<?php echo BASE_URL . 'principal/categorias'; ?>" class="btn btn-success">Ver todas las categorías</a>
         </div>
     </div>
+    <!-- FIN DE BANNER DE PRODUCTOS 2 -->
 
 
+
+    <!-- TARJETAS DE  PRODUCTOS -->
+    <div class="row py-5">
+        <h2>
+            Nuestros productos
+        </h2>
+    </div>
+    <div class="row">
+        <div class="swiper mySwiper" id="swiper-productos">
+            <div class="swiper-wrapper">
+                <?php
+                // Obtener 20 productos aleatorios
+                $productos_random = $data['productosConCategoria'];
+                shuffle($productos_random);
+                $productos_random = array_slice($productos_random, 0, 20);
+                ?>
+
+                <?php foreach ($productos_random as $producto) { ?>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <a href="<?php echo BASE_URL . 'principal/detail/' . $producto['id_producto']; ?>" class="card-title">
+                                <img class="card-img-left" src="<?php echo $producto['imagen_producto']; ?>" alt="Imagen del Producto">
+                            </a>
+                            <div class="card-body mt-2">
+                                <a href="<?php echo BASE_URL . 'Principal/detail/' . $producto['id_producto']; ?>" class="card-title">
+                                    <h5><?php echo $producto['nombre_producto']; ?></h5>
+                                </a>
+                                <p class="card-text">$<?php echo $producto['precio_producto']; ?></p>
+                                <input type="hidden" value="1" class="cantidad">
+                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                    <a href="#" class="btn btn-add-to-cart d-flex align-items-center gap-2" id="btnAddCarrito"
+                                        prod="<?php echo $producto['id_producto']; ?>"
+                                        data-nombre="<?php echo $producto['nombre_producto']; ?>"
+                                        data-imagen="<?php echo $producto['imagen_producto']; ?>"
+                                        data-precio="<?php echo $producto['precio_producto']; ?>">
+                                        <i class="fa-solid fa-cart-shopping"></i> Agregar
+                                    </a>
+                                    <span class="price">$<?php echo $producto['precio_producto']; ?></span>
+                                </div>
+                            </div>
+                            <a href="<?php echo BASE_URL . 'Principal/detail/' . $producto['id_producto']; ?>" class="ojo">
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+    </div>
+    <!-- FIN DE TARJETAS DE PRODUCTOS -->
+
+
+
+    <!-- OPINIONES CLIENTES -->
+    <div class="row pt-5">
+        <h2>Opiniones de clientes</h2>
+    </div>
+    <div class="row py-5">
+        <div class="swiper mySwiper" id="swiper-opiniones">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="row">
+                        <p class="comentario px-4 py-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis perspiciatis veritatis hic, ipsam esse eligendi.
+                        </p>
+
+                        <div class="d-flex mt-3 gap-3 align-items-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gv6VVdtAGLqBK9MXIBOUGJ-hWeVdiiN-3Q&s" alt="" width="60" height="60">
+                            <div id="come">
+                                <p class="nombre">Nombre Usuario</p>
+                                <div class="d-flex" style="margin: 0; padding: 0;">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="row">
+                        <p class="comentario px-4 py-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis perspiciatis veritatis hic, ipsam esse eligendi.
+                        </p>
+
+                        <div class="d-flex mt-3 gap-3 align-items-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gv6VVdtAGLqBK9MXIBOUGJ-hWeVdiiN-3Q&s" alt="" width="60" height="60">
+                            <div id="come">
+                                <p class="nombre">Nombre Usuario</p>
+                                <div class="d-flex" style="margin: 0; padding: 0;">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="row">
+                        <p class="comentario px-4 py-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis perspiciatis veritatis hic, ipsam esse eligendi.
+                        </p>
+
+                        <div class="d-flex mt-3 gap-3 align-items-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gv6VVdtAGLqBK9MXIBOUGJ-hWeVdiiN-3Q&s" alt="" width="60" height="60">
+                            <div id="come">
+                                <p class="nombre">Nombre Usuario</p>
+                                <div class="d-flex" style="margin: 0; padding: 0;">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="row">
+                        <p class="comentario px-4 py-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis perspiciatis veritatis hic, ipsam esse eligendi.
+                        </p>
+
+                        <div class="d-flex mt-3 gap-3 align-items-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gv6VVdtAGLqBK9MXIBOUGJ-hWeVdiiN-3Q&s" alt="" width="60" height="60">
+                            <div id="come">
+                                <p class="nombre">Nombre Usuario</p>
+                                <div class="d-flex" style="margin: 0; padding: 0;">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="row">
+                        <p class="comentario px-4 py-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis perspiciatis veritatis hic, ipsam esse eligendi.
+                        </p>
+
+                        <div class="d-flex mt-3 gap-3 align-items-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gv6VVdtAGLqBK9MXIBOUGJ-hWeVdiiN-3Q&s" alt="" width="60" height="60">
+                            <div id="come">
+                                <p class="nombre">Nombre Usuario</p>
+                                <div class="d-flex" style="margin: 0; padding: 0;">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="row">
+                        <p class="comentario px-4 py-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis perspiciatis veritatis hic, ipsam esse eligendi.
+                        </p>
+
+                        <div class="d-flex mt-3 gap-3 align-items-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gv6VVdtAGLqBK9MXIBOUGJ-hWeVdiiN-3Q&s" alt="" width="60" height="60">
+                            <div id="come">
+                                <p class="nombre">Nombre Usuario</p>
+                                <div class="d-flex" style="margin: 0; padding: 0;">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="row">
+                        <p class="comentario px-4 py-3">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis perspiciatis veritatis hic, ipsam esse eligendi.
+                        </p>
+
+                        <div class="d-flex mt-3 gap-3 align-items-center">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gv6VVdtAGLqBK9MXIBOUGJ-hWeVdiiN-3Q&s" alt="" width="60" height="60">
+                            <div id="come">
+                                <p class="nombre">Nombre Usuario</p>
+                                <div class="d-flex" style="margin: 0; padding: 0;">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
 
 </div>
+<!-- FINAL DE CONTENIDO -->
 
 
 <?php include_once "Views/Template-Principal/Footer.php"; ?>

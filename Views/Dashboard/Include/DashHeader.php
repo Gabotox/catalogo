@@ -41,7 +41,7 @@ include_once __DIR__ . "/../../../Config/config.php";
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="form-agregar-producto">
+                    <form id="form-agregar-producto" enctype="multipart/form-data">
                         <input type="hidden" id="agregar-producto-id">
                         <div class="row mb-3">
                             <div class="col-6">
@@ -60,7 +60,7 @@ include_once __DIR__ . "/../../../Config/config.php";
                             </div>
                             <div class="col-6">
                                 <label for="agregar-producto-imagen" class="col-form-label">Imagen:</label>
-                                <input type="text" class="form-control" id="agregar-producto-imagen">
+                                <input type="file" class="form-control" id="agregar-producto-imagen" name="imagen">
                             </div>
                         </div>
                         <div class="row mb-3">

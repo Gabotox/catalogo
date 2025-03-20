@@ -45,7 +45,17 @@
                 <?php
                 foreach ($data['productos'] as $producto) { ?>
                     <tr>
-                        <td class="align-middle"><img src="<?php echo $producto['imagen_producto']; ?>" alt="" width="50"></td>
+                        <td class="align-middle">
+                            <?php
+                            $imagen = $producto['imagen_producto'];
+                            $rutaImagen = filter_var($imagen, FILTER_VALIDATE_URL)
+                                ? $imagen  // Es una URL, úsala directamente
+                                : BASE_URL . 'assets/img/Productos/' . basename($imagen); // Es un archivo local
+                            ?>
+                            <img src="<?php echo htmlspecialchars($rutaImagen, ENT_QUOTES, 'UTF-8'); ?>" alt="" width="50">
+                        </td>
+
+
                         <td class="align-middle"><?php echo $producto['nombre_producto']; ?></td>
                         <td class="align-middle"><?php echo $producto['descripcion_producto']; ?></td>
                         <td class="align-middle"><span class="badge bg-primary">$ <?php echo number_format($producto['precio_producto'], 0, ',', '.'); ?></span></td>
@@ -102,7 +112,7 @@
                     </tr>
 
                 <?php
-             } ?>
+                } ?>
             </tbody>
         </table>
     </div>

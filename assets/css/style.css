@@ -1,4 +1,49 @@
+/* VARIABLES */
+:root {
+    --color-base: #25b09b;
+    --color-base-hover: #1f8e7f;
+    --color-text: #333;
+}
 
+
+
+.swiper-slide {
+    cursor: pointer;
+}
+
+
+
+
+
+
+#swiperBanner {
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    border: 3px solid red;
+}
+
+#swiperBanner .swiper {
+    width: 100%;
+    height: 100%;
+}
+
+#swiperBanner .swiper-slide {
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#swiperBanner .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 3px solid red;
+    max-width: 500px;
+}
 
 
 
@@ -38,7 +83,6 @@
 /* Contenedor del slider */
 #swiper-productos {
     width: 100%;
-    padding: 1rem 0;
 }
 
 #swiper-productos .swiper-slide {
@@ -60,6 +104,7 @@
 .card-body {
     padding: 0 !important;
 }
+
 .card-title {
     font-size: 1.1rem;
     font-weight: bold;
@@ -88,6 +133,7 @@
     text-decoration: none;
     font-weight: 600 !important;
 }
+
 /* Botón agregar al carrito */
 .btn-add-to-cart {
     background: #719c3d !important;
@@ -124,6 +170,19 @@
     border-top-right-radius: 1rem;
 }
 
+
+
+
+
+#come {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
 #loader-container {
     position: fixed;
     top: 0;
@@ -137,6 +196,56 @@
     z-index: 9999;
 }
 
+
+
+#swiper-opiniones {
+    padding: 2rem;
+    overflow: hidden;
+    /* Evita bugs visuales */
+}
+
+#swiper-opiniones .swiper-slide {
+    width: auto;
+    /* Permite que Swiper maneje el tamaño */
+    min-width: 260px;
+    /* Ajusta según necesidad */
+    max-width: 300px;
+    /* Evita que se estire demasiado */
+}
+
+#swiper-opiniones .comentario {
+    position: relative;
+    background: #e0e0e0;
+    border-radius: 1rem;
+}
+
+/* Triángulo que apunta al usuario */
+#swiper-opiniones .comentario::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    /* Posiciona el triángulo debajo del comentario */
+    left: 25px;
+    /* Ajusta la posición horizontal */
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #719c3d;
+    /* Color del triángulo debe coincidir con el fondo */
+}
+
+#swiper-opiniones .nombre {
+    font-weight: 400 !important;
+    margin: 0;
+    padding-bottom: .4rem;
+}
+
+#swiper-opiniones i {
+    color: #719c3d;
+    margin-right: .1rem;
+    font-size: .9rem;
+}
+
+
 /* Loader animado */
 .loader {
     width: 50px;
@@ -149,6 +258,11 @@
 
 /* Animación de giro */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

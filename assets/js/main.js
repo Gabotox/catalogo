@@ -1,7 +1,18 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
-    const slides = document.querySelectorAll("#swiper-botones .swiper-slide").length;
+
+    var swiper = new Swiper("#swiperBanner", {
+        loop: true,
+        freeMode: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
 
     var swiper = new Swiper("#swiper-botones", {
         slidesPerView: "auto",
@@ -43,6 +54,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
+
+    var swiper = new Swiper("#swiper-opiniones", {
+        slidesPerView: "auto", // Se ajusta automáticamente
+        spaceBetween: 80, // Espaciado entre slides
+        freeMode: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+
 
 });
 

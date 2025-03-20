@@ -28,20 +28,22 @@
 </div>
 
 
-<div class="table-responsive"> <!-- Hace que la tabla sea desplazable en móviles -->
-    <div class="cont-pro"> <!-- Aplica el scroll solo a la tabla -->
+<div class="table-responsive">
+    <div class="cont-pro">
         <table class="table table-striped table-hover align-middle" id="categorias">
             <thead class="table-dark sticky-header border-0">
                 <tr class="border-0">
-                    <th class="border-0 w-75"><i class="fa-solid fa-signature"></i> Nombre</th>
-                    <th class="border-0"><i class="fa-solid fa-keyboard"></i> Acciones</th>
+                    <th class="border-0 text-center" style="width: 10%;"><i class="fa-solid fa-image"></i> Imágen</th>
+                    <th class="border-0" style="width: 70%;"><i class="fa-solid fa-signature"></i> Nombre</th>
+                    <th class="border-0" style="width: 20%;"><i class="fa-solid fa-keyboard"></i> Acciones</th>
                 </tr>
             </thead>
 
             <tbody>
                 <?php foreach ($data['categorias'] as $categoria) { ?>
                     <tr>
-                        <td class="align-middle"><?php echo $categoria['nombre_categoria']; ?></td> <!-- Aplica el ancho a la celda -->
+                        <td class="align-middle"><img src="<?php echo $categoria['imagen_categoria']; ?>" alt="<?php echo $categoria['nombre_categoria']; ?>" width="50"></td>
+                        <td class="align-middle"><?php echo $categoria['nombre_categoria']; ?></td>
                         <td class="align-middle text-nowrap">
                             <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditarCategoria"
                                 data-id="<?php echo $categoria['id_categoria']; ?>"

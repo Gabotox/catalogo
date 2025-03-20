@@ -72,27 +72,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (btnAgregar) {
         btnAgregar.addEventListener("click", async function (event) {
-            let nombre = document.querySelector("#agregar-producto-nombre").value;
-            let descripcion = document.querySelector("#agregar-producto-descripcion").value;
-            let precio = document.querySelector("#agregar-producto-precio").value;
-            let disponible = document.querySelector("#agregar-producto-disponible").value;
-            let categoria = document.querySelector("#agregar-producto-categoria").value;
-            let imagen = document.querySelector("#agregar-producto-imagen").value;
+            event.preventDefault();
 
-            let datosProducto = {
-                nombre: nombre,
-                descripcion: descripcion,
-                precio: precio,
-                disponible: disponible,
-                categoria: categoria,
-                imagen: imagen
-            };
+            let formData = new FormData();
+            formData.append("nombre", document.querySelector("#agregar-producto-nombre").value);
+            formData.append("descripcion", document.querySelector("#agregar-producto-descripcion").value);
+            formData.append("precio", document.querySelector("#agregar-producto-precio").value);
+            formData.append("disponible", document.querySelector("#agregar-producto-disponible").value);
+            formData.append("categoria", document.querySelector("#agregar-producto-categoria").value);
 
+            // Debugging: Log the values being appended
+            console.log("Nombre:", document.querySelector("#agregar-producto-nombre").value);
+            console.log("Descripcion:", document.querySelector("#agregar-producto-descripcion").value);
+            console.log("Precio:", document.querySelector("#agregar-producto-precio").value);
+            console.log("Disponible:", document.querySelector("#agregar-producto-disponible").value);
+            console.log("Categoria:", document.querySelector("#agregar-producto-categoria").value);
+
+            // Obtener el archivo seleccionado
+            let inputFile = document.querySelector("#agregar-producto-imagen");
+            if (inputFile.files.length > 0) {
+                formData.append("imagen", inputFile.files[0]); // Agregar el archivo
+                // Debugging: Log the file being appended
+                console.log("Imagen:", inputFile.files[0]);
+            }
+            
             try {
                 const response = await fetch(base_url + "Dashboard/agregar", {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(datosProducto)
+                    body: formData  // Importante: No usar JSON, sino FormData
                 });
 
                 const res = await response.json();
@@ -120,9 +127,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error("Error en la petición:", error);
             }
         });
-    } else {
-        console.warn("El botón 'agregar' no existe en esta vista:", window.location.pathname);
     }
+
+
+
 
 
     // Evento para eliminar un producto

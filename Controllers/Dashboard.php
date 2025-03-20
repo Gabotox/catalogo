@@ -121,34 +121,43 @@ class Dashboard extends Controller
             return;
         }
 
-        header('Content-Type: application/json');
-        $data = json_decode(file_get_contents("php://input"), true);
-
-        if (
-            !isset($data["nombre"]) ||
-            !isset($data["precio"]) ||
-            !isset($data["descripcion"]) ||
-            !isset($data["disponible"]) ||
-            !isset($data["categoria"])
-        ) {
-            echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios"]);
-            return;
-        }
-
-        $nombre = trim($data["nombre"]);
-        $precio = trim($data["precio"]);
-        $descripcion = trim($data["descripcion"]);
-        $categoria = trim($data["categoria"]);
-        $disponible = trim($data["disponible"]);
-        $imagen = $data['imagen'];
-
+        // Obtener datos del formulario
+        $nombre = trim($_POST["nombre"] ?? "");
+        $precio = trim($_POST["precio"] ?? "");
+        $descripcion = trim($_POST["descripcion"] ?? "");
+        $categoria = trim($_POST["categoria"] ?? "");
+        $disponible = trim($_POST["disponible"] ?? "");
 
         if (empty($nombre) || empty($precio) || empty($descripcion) || empty($categoria) || empty($disponible)) {
             echo json_encode(["status" => "error", "message" => "Todos los campos son obligatorios"]);
             return;
         }
 
+        
 
+        // Manejo de la imagen
+        if (isset($_FILES["imagen"]) && $_FILES["imagen"]["error"] == 0) {
+            $directorioDestino = __DIR__ . "/../assets/img/Productos/";
+
+            if (!file_exists($directorioDestino)) {
+                mkdir($directorioDestino, 0777, true);
+            }
+
+            $nombreArchivo = time() . "_" . basename($_FILES["imagen"]["name"]);
+            $rutaArchivo = $directorioDestino . $nombreArchivo;
+
+            if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $rutaArchivo)) {
+                $imagen = "assets/img/Productos/" . $nombreArchivo;  // Ruta relativa
+            } else {
+                echo json_encode(["status" => "error", "message" => "Error al subir la imagen"]);
+                return;
+            }
+        } else {
+            echo json_encode(["status" => "error", "message" => "Imagen no válida"]);
+            return;
+        }
+
+        // Guardar en la base de datos
         $resultadoAgregar = $this->model->agregarProducto([
             "nombre" => $nombre,
             "precio" => $precio,
@@ -164,6 +173,10 @@ class Dashboard extends Controller
             echo json_encode(["status" => "error", "message" => "Error al agregar el producto"]);
         }
     }
+
+
+
+
 
     public function editar()
     {
@@ -394,5 +407,4 @@ class Dashboard extends Controller
             echo json_encode([]);
         }
     }
-
 }

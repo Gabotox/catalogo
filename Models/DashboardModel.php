@@ -128,12 +128,10 @@ class DashboardModel extends Query
 
     public function buscarProductos($query)
     {
-
         $sql = "SELECT p.*, c.* 
                 FROM productos p 
-                INNER JOIN categorias c ON p.categoria_id = c.id_categoria
-                WHERE p.nombre_producto LIKE ?;
-                ";
+                LEFT JOIN categorias c ON p.categoria_id = c.id_categoria
+                WHERE p.nombre_producto LIKE ?";
         $params = ["%$query%"];
         $productos = $this->selectAll($sql, $params);
         return $productos;
