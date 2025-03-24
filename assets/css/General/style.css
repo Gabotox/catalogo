@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+
+
+#swiperBanner h2{
+    font-family: "Cedarville Cursive", cursive;
+    font-style: normal;
+    font-weight: bold;
+    color: #763034;
+}
