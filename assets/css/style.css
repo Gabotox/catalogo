@@ -279,7 +279,7 @@
 }
 
 .categoria-imagen {
-    background: var(--color-base);
+    background-image: radial-gradient(circle, #81df99, #74ce8b, #68bc7d, #5bac70, #4f9b63);
     padding: .4rem;
     width: 100px;
     height: 120px;
@@ -312,6 +312,9 @@
     align-items: center;
 }
 
+#swiper-categorias h5 {
+    font-weight: 200;
+}
 
 #bannerVideo {
     padding: 0 !important;

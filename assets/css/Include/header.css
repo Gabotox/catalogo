@@ -2,11 +2,15 @@
     position: relative;
 }
 
+.cont-bus {
+    background: #6DED8E;
+    border-radius: .4rem;
+    padding: .2rem 0;
+}
+
 .contenedor-busqueda {
-    border: 1px solid #719c3d;
     display: flex;
     align-items: center;
-    border-radius: .4rem;
     overflow: hidden;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -24,7 +28,7 @@
     box-shadow: none;
 }
 .contenedor-busqueda i {
-    padding-right: 1rem;
+    padding: 0 .6rem;
 }
 
 
@@ -37,12 +41,13 @@
     margin: auto;
     width: 100%; /* Ahora ocupará el mismo ancho que la barra de búsqueda */
     background: white;
-    border: 1px solid #719c3d;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: none; /* Se muestra solo cuando hay resultados */
     max-height: 300px; /* Evita que sea demasiado grande */
     overflow-y: auto; /* Scroll si hay muchos resultados */
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .resultado-item {

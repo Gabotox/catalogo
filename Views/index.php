@@ -16,10 +16,10 @@ include_once "Views/Template-Principal/Header.php";
                 <img class="" src="<?php echo BASE_URL; ?>assets/img/Banners/papas.jpg" alt="Papas frescas" style="filter: brightness(0.5);">
                 <div style="z-index: 1; padding: 1rem; padding-left: 3rem; position: absolute; top:0; bottom: 0; margin:auto; color: white; width: max-content; display: flex; flex-direction: column; justify-content: center;">
                     <h2 style="margin-bottom: 1rem;">
-                        ¡Las mejores papas para tu mesa!
+                        ¡Las mejores papas!
                     </h2>
                     <p style="margin-bottom: 1rem;">Crujientes, frescas y llenas de sabor. ¡Perfectas para cualquier receta!</p>
-                    <h2><a class="" style="border: 2px solid #fff; text-decoration: none; padding: 1rem; border-radius: 10px; color: #fff;" href="#">Comprar ahora</a></h2>
+                    <button class="button-92 d-flex gap-2 align-items-center" role="button"><i class="fa-solid fa-cart-shopping"></i>Compra ya</button>
                 </div>
             </div>
         </div>
@@ -27,12 +27,12 @@ include_once "Views/Template-Principal/Header.php";
         <div class="swiper-slide">
             <div class="row" style="position: relative; height: 100%;">
                 <img class="" src="<?php echo BASE_URL; ?>assets/img/Banners/paa.jpg" alt="Frutas tropicales" style="filter: brightness(0.5);">
-                <div style="z-index: 1; padding: 1rem; padding-left: 3rem; position: absolute; top:0; bottom: 0; margin:auto; color: white; width: max-content; display: flex; flex-direction: column; justify-content: center;">
+                <div style="z-index: 1; padding: 1rem; padding-right: 3rem; position: absolute; top:0; bottom: 0; margin:auto; color: white; width: max-content; display: flex; flex-direction: column; justify-content: center; right: 0; text-align: right;">
                     <h2 style="margin-bottom: 1rem;">
-                        Sabor tropical en cada bocado
+                        Sabor tropical
                     </h2>
                     <p style="margin-bottom: 1rem;">Prueba nuestras frutas frescas, jugosas y llenas de vitaminas.</p>
-                    <h2><a class="" style="border: 2px solid #fff; text-decoration: none; padding: 1rem; border-radius: 10px; color: #fff;" href="#">Comprar ahora</a></h2>
+                    <button class="button-92 d-flex gap-2 align-items-center ms-auto" role="button"><i class="fa-solid fa-cart-shopping"></i>Compra ya</button>
                 </div>
             </div>
         </div>
@@ -42,10 +42,11 @@ include_once "Views/Template-Principal/Header.php";
                 <img class="" src="<?php echo BASE_URL; ?>assets/img/Banners/Verduras.jpg" alt="Verduras frescas" style="filter: brightness(0.5);">
                 <div style="z-index: 1; padding: 1rem; padding-left: 3rem; position: absolute; top:0; bottom: 0; margin:auto; color: white; width: max-content; display: flex; flex-direction: column; justify-content: center;">
                     <h2 style="margin-bottom: 1rem;">
-                        Frescura y salud en cada bocado
+                        Frescura y salud
                     </h2>
                     <p style="margin-bottom: 1rem;">Verduras recién cosechadas para tus comidas más saludables.</p>
-                    <h2><a class="" style="border: 2px solid #fff; text-decoration: none; padding: 1rem; border-radius: 10px; color: #fff;" href="#">Comprar ahora</a></h2>
+                    <!-- HTML !-->
+                    <button class="button-92 d-flex gap-2 align-items-center" role="button"><i class="fa-solid fa-cart-shopping"></i>Compra ya</button>
                 </div>
             </div>
         </div>

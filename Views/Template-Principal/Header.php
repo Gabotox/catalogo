@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<?php echo BASE_URL . 'assets/css/templatemo.css'; ?>">
     <link rel="stylesheet" href="<?php echo BASE_URL . 'assets/css/custom.css'; ?>">
     <link rel="stylesheet" href="<?php echo BASE_URL . 'assets/css/style.css'; ?>">
-    <link rel="stylesheet" href="<?php echo BASE_URL . 'assets/css/General/style.css'?>">
+    <link rel="stylesheet" href="<?php echo BASE_URL . 'assets/css/General/style.css' ?>">
     <link rel="stylesheet" href="<?php echo BASE_URL . 'assets/css/Include/header.css'; ?>">
     <link rel="stylesheet" href="<?php echo BASE_URL . 'assets/css/mod/carrito.css'; ?>">
 
@@ -99,6 +99,9 @@
         <span style="margin-right: 8rem;">De lunes a viernes de 8:00 a.m. a 8:00 p.m.</span>
         <span style="margin-right: 8rem;">Sábados y domingos de 8:00 a.m. a 6:00 p.m.</span>
     </marquee>
+
+
+
     <nav class="navbar navbar-expand-lg navbar-light shadow" style="position: sticky; top: 30px; z-index: 1040; background-color: #f8f9fa;">
         <div class="container d-flex justify-content-between align-items-center w-100">
             <!-- Logo -->
@@ -106,33 +109,39 @@
                 <img src="<?php echo BASE_URL ?>assets/img/logo.jfif" alt="Logo" width="50">
             </a>
 
-            <!-- Barra de búsqueda centrada -->
-            <div class="search-bar flex-grow-1 d-flex justify-content-center">
-                <form class="d-flex w-75 contenedor-busqueda" role="search">
-                    <input class="form-control me-2 searchInput" type="search" placeholder="Buscar..." aria-label="Search">
-                    <i class="fa fa-search"></i>
-                </form>
-                <div class="resultadosBusqueda w-75">
+            <!-- Toggle button for mobile view -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <!-- Barra de búsqueda centrada -->
+                <div class="search-bar flex-grow-1 d-flex justify-content-center my-2 my-lg-0">
+                    <div class="cont-bus w-75">
+                        <form class="d-flex contenedor-busqueda" role="search">
+                            <input class="form-control me-2 searchInput" type="search" placeholder="Buscar..." aria-label="Search">
+                            <i class="fa fa-search"></i>
+                        </form>
+                    </div>
+                    <div class="resultadosBusqueda w-75"></div>
+                </div>
+
+                <!-- Iconos del carrito y usuario -->
+                <div class="d-flex align-items-center justify-content-center gap-3 mt-3 mt-lg-0" style="margin-top: 2rem !important; margin-bottom: 1rem !important;">
+                    <!-- Icono del carrito -->
+                    <button class="nav-icon position-relative text-decoration-none bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#carritoModal">
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark" id="btnCantidadCarrito">0</span>
+                    </button>
+
+                    <!-- Icono del usuario -->
+                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'Admin/login/'; ?>">
+                        <i class="fa fa-fw fa-user text-dark"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
                 </div>
             </div>
-
-            <!-- Iconos del carrito y usuario -->
-            <div class="d-flex align-items-center gap-3">
-                <!-- Icono del carrito -->
-                <button class="nav-icon position-relative text-decoration-none bg-transparent border-0" data-bs-toggle="modal" data-bs-target="#carritoModal">
-                    <i class="fa fa-fw fa-cart-arrow-down text-dark"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark" id="btnCantidadCarrito">0</span>
-                </button>
-
-                <!-- Icono del usuario -->
-                <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'Admin/login/'; ?>">
-                    <i class="fa fa-fw fa-user text-dark"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
-                </a>
-            </div>
         </div>
-
     </nav>
     <!-- Close Header -->
 
