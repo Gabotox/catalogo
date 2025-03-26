@@ -12,20 +12,6 @@
 }
 
 
-#swiperBanner h2 {
-    font-family: "Caveat", cursive;
-    font-optical-sizing: auto;
-    font-weight: bold;
-    color: var(--color-base) !important;
-    font-size: 4rem !important;
-    text-shadow: -1px -1px 0 var(--color-blanco), 1px -1px 0 var(--color-blanco), -1px 1px 0 var(--color-blanco), 1px 1px 0 var(--color-blanco);
-}
-
-
-#swiperBanner p {
-    font-family: "Comfortaa", sans-serif;
-    font-optical-sizing: auto;
-}
 
 .button-92 {
     --c: #fff;

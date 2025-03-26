@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comfortaa:wght@300..700&display=swap');
+
+
 /* VARIABLES */
 :root {
     --color-base: #719c3d;
@@ -10,7 +13,11 @@
     --color-gris-oscuro: #666;
 }
 
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 
 .swiper-slide {
@@ -41,6 +48,22 @@
     align-items: center;
 }
 
+
+#swiperBanner h2 {
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    color: var(--color-base) !important;
+    font-size: 4rem !important;
+    text-shadow: -1px -1px 0 var(--color-blanco), 1px -1px 0 var(--color-blanco), -1px 1px 0 var(--color-blanco), 1px 1px 0 var(--color-blanco);
+}
+
+
+#swiperBanner p {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
+}
+
 /* #swiperBanner .swiper-slide img {
     display: block;
     width: 100%;
@@ -52,6 +75,36 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* CARTAS DE CATEGORIAS */
 #botones .swiper-slide {
     text-align: center;
     width: max-content !important;
@@ -77,25 +130,44 @@
     color: var(--color-negro);
 }
 
-#swiper-botones a.selected {
-    color: var(--color-blanco);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Slider de tarjetas de productos TODOS */
 
 /* Contenedor del slider */
 #swiper-productos {
+    padding-left: 1rem;
     width: 100%;
 }
 
 #swiper-productos .swiper-slide {
     width: 100%;
-    height: 100% !important;
-    padding: 2rem 1.5rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    height: max-content;
+    padding: .5rem 0;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     border-radius: 1rem;
     overflow: hidden;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .card {
@@ -104,42 +176,27 @@
     height: 100%;
 }
 
-
-.card-body {
-    padding: 0 !important;
-}
-
-.card-title {
-    font-size: 1.1rem;
-    font-weight: bold;
+#swiper-productos .card-title,
+h5 {
     margin-bottom: 0.5rem;
-}
-
-
-.card-text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
-    line-height: 1.5;
-    max-height: 4.5em;
+    font-size: .97rem;
 }
 
 /* Precio */
-.price {
+#swiper-productos .price {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: .97rem;
 }
 
-#swiper-productos .card-title {
+#swiper-productos .card-title,
+h5 {
     color: var(--color-negro);
     text-decoration: none;
-    font-weight: 600 !important;
+    font-weight: 300;
 }
 
 /* Botón agregar al carrito */
-.btn-add-to-cart {
+#swiper-productos .btn-add-to-cart {
     background: var(--color-base) !important;
     color: var(--color-blanco);
     padding: 0.4rem .8rem;
@@ -148,12 +205,11 @@
     text-decoration: none;
 }
 
-.btn-add-to-cart:hover {
-    background: red;
+#swiper-productos .btn-add-to-cart:hover {
     color: var(--color-blanco);
 }
 
-.ojo {
+#swiper-productos .ojo {
     position: absolute;
     top: 0;
     left: 0;
@@ -166,13 +222,47 @@
 }
 
 /* Imagen */
-.card-img-left {
+#swiper-productos .card-img-left {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+/* BANNER PRODUCTOS */
+#bannerProductos a {
+    background: var(--color-base);
+    color: var(--color-blanco);
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+
+
+
+
+/* QUEDÉ AQUÍ...... */
+
+#bannerProductos h5 {
+    color: var(--color-base);
+}
+
+/* QUEDÉ AQUÍ...... */
+
+
+
+
 
 
 
@@ -282,7 +372,7 @@
     background-image: radial-gradient(circle, #81df99, #74ce8b, #68bc7d, #5bac70, #4f9b63);
     padding: .4rem;
     width: 100px;
-    height: 120px;
+    height: 100px;
     display: flex;
     justify-content: center;
     margin: 0 auto;
@@ -295,7 +385,8 @@
 
 .categoria-imagen img {
     width: 100%;
-    transform: scale(2.3);
+    transform: scale(2);
+    object-fit: cover;
 }
 
 #swiper-categorias .swiper {
@@ -322,29 +413,64 @@
 
 #bannerVideo .row {
     margin: 0 !important;
-    padding: 0 !important   ;
+    padding: 0 !important;
     width: 100% !important;
     height: 450px !important;
 }
 
 #bannerVideo video {
     margin: 0 !important;
-    padding: 0 !important   ;
+    padding: 0 !important;
     height: 100% !important;
-    object-fit: cover; /* Ajusta el video sin deformarlo */
+    object-fit: cover;
+    /* Ajusta el video sin deformarlo */
+}
+
+.infoVideo {
+    width: 40%;
+    z-index: 1;
+    padding: 1rem;
+    padding-left: 3rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+@media screen and (max-width: 768px) {
+    .infoVideo {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+}
+
+#bannerVideo h2 {
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    color: var(--color-base) !important;
+    font-size: 3rem !important;
+    text-shadow: -1px -1px 0 var(--color-blanco), 1px -1px 0 var(--color-blanco), -1px 1px 0 var(--color-blanco), 1px 1px 0 var(--color-blanco);
 }
 
 
-
-
-
-.nav-productos {
-
+#bannerVideo p {
+    font-family: "Comfortaa", sans-serif;
+    font-optical-sizing: auto;
 }
+
 
 
 .page-item.active .page-link {
-    background-color: var(--color-base) !important; /* Verde */
-    border-color: var(--color-base) !important; /* Borde verde */
-    color: var(--color-blanco) !important; /* Texto blanco */
+    background-color: var(--color-base) !important;
+    /* Verde */
+    border-color: var(--color-base) !important;
+    /* Borde verde */
+    color: var(--color-blanco) !important;
+    /* Texto blanco */
 }

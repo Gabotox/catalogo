@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     
-    var swiper = new Swiper("#swiperBanner", {
+    var swiperBanner = new Swiper("#swiperBanner", {
         loop: true,
         freeMode: true,
         autoplay: {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    var swiper = new Swiper("#swiper-botones", {
+    var swiperBotones = new Swiper("#swiper-botones", {
         slidesPerView: "auto",
         spaceBetween: 10,
         freeMode: true,
@@ -27,36 +27,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    var swiper = new Swiper("#swiper-productos", {
+    var swiperProductos = new Swiper("#swiper-productos", {
         slidesPerView: 6,
         spaceBetween: 30,
         freeMode: true,
         autoplay: {
-            delay: 2000,
+            delay: 5000,
             disableOnInteraction: false,
         },
         effect: 'slide',
         breakpoints: {
-            320: {
+            0: {
                 slidesPerView: 1,
                 spaceBetween: 10
             },
-            480: {
+            320: {
                 slidesPerView: 2,
+                spaceBetween: 10
+            },
+            480: {
+                slidesPerView: 3,
                 spaceBetween: 15
             },
             768: {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 20
             },
             1024: {
-                slidesPerView: 4,
+                slidesPerView: 5,
                 spaceBetween: 30
             }
         }
     });
 
-    var swiper = new Swiper("#swiper-opiniones", {
+    var swiperOpiniones = new Swiper("#swiper-opiniones", {
         slidesPerView: "auto", // Se ajusta automáticamente
         spaceBetween: 80, // Espaciado entre slides
         freeMode: true,
@@ -66,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
-    var swiper = new Swiper("#swiper-categorias", {
+    var swiperCategorias = new Swiper("#swiper-categorias", {
         spaceBetween: 30,
         freeMode: true,
         autoplay: {

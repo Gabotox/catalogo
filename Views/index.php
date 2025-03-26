@@ -130,12 +130,11 @@ include_once "Views/Template-Principal/Header.php";
             <source src="<?php echo BASE_URL; ?>assets/img/Banners/campeee.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div style="z-index: 1; padding: 1rem; padding-left: 3rem; position: absolute; top:0; bottom: 0; margin:auto; color: white; width: max-content; display: flex; flex-direction: column; justify-content: center;">
+        <div class="infoVideo" style="">
             <h2 style="margin-bottom: 1rem;">
                 PRODUCTOS 100% COLOMBIANOS
             </h2>
-            <p style="margin-bottom: 1rem;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, impedit?</p>
-            <h2><a class="" style="border: 2px solid #fff; text-decoration: none; padding: 1rem; border-radius: 10px; color: #fff;" href="#">Comprar ahora</a></h2>
+            <p style="margin-bottom: 1rem;">Productos que han sido elaborados 100% por manos colombianas para que lleguen a ti</p>
         </div>
     </div>
 </div>
@@ -173,14 +172,14 @@ include_once "Views/Template-Principal/Header.php";
                                 ?>
                                 <img class="card-img-left" src="<?php echo htmlspecialchars($rutaImagen, ENT_QUOTES, 'UTF-8'); ?>" alt="Imagen del Producto">
                             </a>
-                            <div class="card-body mt-2">
+                            <div class="card-body mt-2 px-2">
                                 <a href="<?php echo BASE_URL . 'Principal/detail/' . $producto['id_producto']; ?>" class="card-title">
                                     <h5><?php echo $producto['nombre_producto']; ?></h5>
                                 </a>
-                                <p class="card-text">$<?php echo $producto['precio_producto']; ?></p>
+                                <span class="price">$<?php echo $producto['precio_producto']; ?></span>
                                 <input type="hidden" value="1" class="cantidad">
-                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                    <a href="#" class="btn btn-add-to-cart d-flex align-items-center gap-2" id="btnAddCarrito"
+                                <div class="mt-2">
+                                    <a href="#" class="btn w-100 btn-add-to-cart d-flex align-items-center justify-content-center gap-3" id="btnAddCarrito"
                                         prod="<?php echo $producto['id_producto']; ?>"
                                         data-nombre="<?php echo $producto['nombre_producto']; ?>"
                                         data-imagen="
@@ -194,7 +193,6 @@ include_once "Views/Template-Principal/Header.php";
                                         data-precio="<?php echo $producto['precio_producto']; ?>">
                                         <i class="fa-solid fa-cart-shopping"></i> Agregar
                                     </a>
-                                    <span class="price">$<?php echo $producto['precio_producto']; ?></span>
                                 </div>
                             </div>
                             <a href="<?php echo BASE_URL . 'Principal/detail/' . $producto['id_producto']; ?>" class="ojo">
@@ -215,17 +213,16 @@ include_once "Views/Template-Principal/Header.php";
     <!-- BANNER DE PRODUCTOS 2 -->
     <div class="row py-5 pb-2">
         <h2>
-            Titulo
+            Productos Principales
         </h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio nam aliquam consequuntur delectus, deserunt aut harum tenetur temporibus quibusdam maiores?</p>
     </div>
-    <div class="row">
+    <div class="row" id="bannerProductos">
         <!-- Tarjeta principal grande -->
         <div class="col-lg-8">
             <div class="card">
                 <img class="" src="<?php echo BASE_URL; ?>assets/img/Banners/paa.jpg" alt="Banner 1" style="border-radius: 1rem; filter: brightness(0.5);">
                 <div class="card-img-overlay d-flex align-items-end">
-                    <a href="URL_COMPRA" class="btn btn-dark btn-lg">COMPRAR AHORA</a>
+                    <a href="<?php echo BASE_URL;?>principal/productos/" class="btn btn-co btn-lg">COMPRAR AHORA</a>
                 </div>
             </div>
         </div>
@@ -236,7 +233,7 @@ include_once "Views/Template-Principal/Header.php";
                     <div class="card">
                         <img class="" src="<?php echo BASE_URL; ?>assets/img/Banners/papas.jpg" alt="Banner 1" style="border-radius: 1rem; filter: brightness(0.5);">
                         <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                            <h5 class="text-white text-center">PRÓXIMAMENTE EN NUESTRA TIENDA</h5>
+                            <h5 class="text-white text-center">PRÓXIMAMENTE</h5>
                         </div>
                     </div>
                 </div>
